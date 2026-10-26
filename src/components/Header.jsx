@@ -33,7 +33,7 @@ export default function Header({
         {/* Brand Logo */}
         <div className="logo-group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
           <div className="logo-icon-wrap">
-            <Radio size={24} />
+            <Radio size={22} />
           </div>
           <div className="logo-text">
             <h1>
@@ -44,75 +44,27 @@ export default function Header({
         </div>
 
         {/* Feed Switcher Tabs */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          background: 'var(--bg-secondary)',
-          border: '1px solid var(--surface-border)',
-          borderRadius: 'var(--radius-full)',
-          padding: '4px',
-          gap: '4px'
-        }}>
+        <div className="tab-switcher">
           {/* Live Feed Tab */}
           <button
             onClick={() => onTabChange('live')}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 16px',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-              color: activeTab === 'live' ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-              background: activeTab === 'live' ? 'rgba(0, 210, 255, 0.15)' : 'transparent',
-              border: activeTab === 'live' ? '1px solid rgba(0, 210, 255, 0.35)' : '1px solid transparent',
-              transition: 'all 0.15s ease'
-            }}
+            className={`tab-btn ${activeTab === 'live' ? 'active-live' : ''}`}
+            title="Switch to Latest News Feed"
           >
-            <Flame size={15} style={{ color: activeTab === 'live' ? 'var(--accent-cyan)' : 'var(--text-muted)' }} />
-            <span>Latest News</span>
-            <span style={{
-              fontSize: '0.72rem',
-              background: 'rgba(125, 125, 125, 0.16)',
-              padding: '1px 7px',
-              borderRadius: 'var(--radius-full)',
-              fontFamily: 'var(--font-mono)'
-            }}>
-              {liveCount}
-            </span>
+            <Flame size={15} className="tab-icon" />
+            <span className="tab-btn-label">Latest News</span>
+            <span className="tab-count-pill">{liveCount}</span>
           </button>
 
           {/* Old News Archive Tab */}
           <button
             onClick={() => onTabChange('archive')}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              padding: '6px 16px',
-              borderRadius: 'var(--radius-full)',
-              fontSize: '0.85rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-              color: activeTab === 'archive' ? 'var(--accent-violet)' : 'var(--text-secondary)',
-              background: activeTab === 'archive' ? 'rgba(139, 92, 246, 0.18)' : 'transparent',
-              border: activeTab === 'archive' ? '1px solid rgba(139, 92, 246, 0.4)' : '1px solid transparent',
-              transition: 'all 0.15s ease'
-            }}
+            className={`tab-btn ${activeTab === 'archive' ? 'active-archive' : ''}`}
+            title="Switch to Historical News Archive"
           >
-            <Archive size={15} style={{ color: activeTab === 'archive' ? 'var(--accent-violet)' : 'var(--text-muted)' }} />
-            <span>Old News Archive</span>
-            <span style={{
-              fontSize: '0.72rem',
-              background: 'rgba(125, 125, 125, 0.16)',
-              padding: '1px 7px',
-              borderRadius: 'var(--radius-full)',
-              fontFamily: 'var(--font-mono)'
-            }}>
-              {archiveCount}
-            </span>
+            <Archive size={15} className="tab-icon" />
+            <span className="tab-btn-label">Old News Archive</span>
+            <span className="tab-count-pill">{archiveCount}</span>
           </button>
         </div>
 
@@ -124,8 +76,8 @@ export default function Header({
             title={dataSource === 'live' ? `Live Google Sheet stream (${latencyMs}ms)` : 'Cached / Snapshot mode'}
           >
             <span className="pulse-dot" />
-            <span>
-              {dataSource === 'live' ? 'Live Stream' : 'Cached'}
+            <span className="sync-badge-text">
+              {dataSource === 'live' ? 'Live' : 'Cached'}
             </span>
           </div>
 
@@ -146,7 +98,7 @@ export default function Header({
             title="Refresh feed from Google Spreadsheet"
           >
             <RotateCw size={16} className={isRefreshing ? 'spin-icon' : ''} />
-            <span>{isRefreshing ? 'Syncing...' : 'Refresh'}</span>
+            <span className="btn-refresh-text">{isRefreshing ? 'Syncing...' : 'Refresh'}</span>
           </button>
 
           {/* Bookmarks Toggle */}

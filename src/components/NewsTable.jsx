@@ -13,10 +13,10 @@ export default function NewsTable({
         <table className="news-table">
           <thead>
             <tr>
-              <th style={{ width: '180px' }}>Publisher</th>
+              <th className="col-publisher" style={{ width: '180px' }}>Publisher</th>
               <th>Headline</th>
-              <th style={{ width: '140px' }}>Category</th>
-              <th style={{ width: '110px' }}>Published</th>
+              <th className="col-category" style={{ width: '140px' }}>Category</th>
+              <th className="col-published" style={{ width: '110px' }}>Published</th>
               <th style={{ width: '100px', textAlign: 'right' }}>Actions</th>
             </tr>
           </thead>
@@ -26,7 +26,7 @@ export default function NewsTable({
               return (
                 <tr key={item.id}>
                   {/* Publisher */}
-                  <td>
+                  <td className="col-publisher">
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       {item.favicon && (
                         <img
@@ -55,7 +55,7 @@ export default function NewsTable({
                   </td>
 
                   {/* Category */}
-                  <td>
+                  <td className="col-category">
                     <span 
                       className="badge-tag default"
                       style={{ fontSize: '0.7rem', display: 'inline-block' }}
@@ -65,7 +65,7 @@ export default function NewsTable({
                   </td>
 
                   {/* Published Time */}
-                  <td style={{ color: 'var(--text-muted)', fontSize: '0.825rem' }}>
+                  <td className="col-published" style={{ color: 'var(--text-muted)', fontSize: '0.825rem' }}>
                     {item.timeAgo}
                   </td>
 

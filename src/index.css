@@ -224,6 +224,66 @@ input, select {
   font-weight: 500;
 }
 
+/* Feed Switcher Tabs in Header */
+.tab-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-primary);
+  padding: 4px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-border);
+}
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--text-secondary);
+  border: 1px solid transparent;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.tab-btn.active-live {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(249, 115, 22, 0.12));
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.35);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.18);
+}
+
+.tab-btn.active-archive {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+  color: #6366f1;
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.18);
+}
+
+.tab-icon {
+  flex-shrink: 0;
+}
+
+.tab-count-pill {
+  font-size: 0.72rem;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background: var(--bg-tertiary);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  border: 1px solid var(--surface-border);
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -689,8 +749,18 @@ input, select {
   color: var(--text-primary);
 }
 
+.filter-controls-subrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .source-select-wrap {
-  min-width: 200px;
+  min-width: 180px;
+}
+
+.sort-select-wrap {
+  min-width: 140px;
 }
 
 .custom-select {
@@ -1103,6 +1173,32 @@ input, select {
   white-space: pre-line;
 }
 
+.modal-meta-grid {
+  background: var(--bg-primary);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-bottom: 24px;
+  font-size: 0.825rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.modal-footer-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 /* Settings Form */
 .form-group {
   margin-bottom: 20px;
@@ -1179,40 +1275,495 @@ input, select {
   color: var(--accent-cyan);
 }
 
-/* Responsive Breakpoints */
+/* ==========================================================================
+   Responsive Breakpoints & Mobile Phone Optimizations
+   ========================================================================== */
+
 @media (max-width: 1024px) {
+  .container {
+    padding: 0 18px;
+  }
+
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
+
+  .news-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
   .hero-spotlight {
     padding: 24px;
   }
+
   .hero-title {
     font-size: 1.5rem;
   }
 }
 
-@media (max-width: 640px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+@media (max-width: 840px) {
+  .logo-subtitle {
+    display: none;
   }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 14px;
+  }
+
+  /* Compact Sticky Header for Phones */
+  .header-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
   .header-inner {
     height: auto;
-    padding: 12px 0;
+    padding: 10px 0;
+    display: flex;
     flex-wrap: wrap;
-  }
-  .news-grid {
-    grid-template-columns: 1fr;
-  }
-  .hero-meta, .hero-actions {
-    width: 100%;
     justify-content: space-between;
+    align-items: center;
+    gap: 10px;
   }
-  .hero-title {
+
+  .logo-group {
+    order: 1;
+    gap: 8px;
+  }
+
+  .logo-icon-wrap {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+  }
+
+  .logo-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .header-actions {
+    order: 2;
+    gap: 6px;
+  }
+
+  .sync-badge {
+    padding: 5px 8px;
+    font-size: 0.725rem;
+    gap: 5px;
+  }
+
+  .btn-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .btn-refresh {
+    padding: 7px 10px;
+    font-size: 0.8rem;
+  }
+
+  .btn-refresh-text {
+    display: none; /* Icon-only refresh button on mobile */
+  }
+
+  /* Segmented Feed Switcher Row */
+  .tab-switcher {
+    order: 3;
+    width: 100%;
+    margin-top: 2px;
+    gap: 4px;
+    padding: 3px;
+  }
+
+  .tab-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 9px 8px;
+    font-size: 0.825rem;
+    min-height: 40px; /* Touch target size */
+  }
+
+  .tab-count-pill {
+    font-size: 0.68rem;
+    padding: 2px 6px;
+  }
+
+  /* Ticker Bar on Mobile */
+  .ticker-container {
+    height: 34px;
+  }
+
+  .ticker-label {
+    font-size: 0.68rem;
+    padding: 0 10px;
+  }
+
+  .ticker-item {
+    font-size: 0.775rem;
+    gap: 6px;
+  }
+
+  /* Balanced 2x2 Stats Grid for Phones */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 16px 0 20px;
+  }
+
+  .stat-card {
+    padding: 12px 14px;
+    gap: 12px;
+    border-radius: var(--radius-md);
+  }
+
+  .stat-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+  }
+
+  .stat-val {
     font-size: 1.3rem;
   }
+
+  .stat-lbl {
+    font-size: 0.72rem;
+  }
+
+  /* Hero Spotlight on Phones */
+  .hero-spotlight {
+    padding: 18px 16px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 20px;
+  }
+
+  .hero-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .hero-badge-group {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .hero-meta {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 14px;
+    font-size: 0.8rem;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+  }
+
+  .hero-snippet {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .hero-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding-top: 14px;
+  }
+
+  .hero-actions {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-secondary {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 12px;
+    font-size: 0.825rem;
+    min-height: 42px;
+  }
+
+  /* Filter Panel on Phones */
+  .filter-panel {
+    padding: 14px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-md);
+  }
+
   .search-row {
     flex-direction: column;
     align-items: stretch;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .search-input-wrap {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  .search-input {
+    height: 42px;
+    font-size: 0.875rem;
+  }
+
+  .filter-controls-subrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .source-select-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .sort-select-wrap {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .custom-select {
+    height: 42px;
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+
+  .view-mode-group {
+    flex-shrink: 0;
+  }
+
+  .view-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Category pills smooth touch scroll */
+  .category-scroll {
+    gap: 6px;
+    padding-bottom: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cat-pill {
+    padding: 7px 12px;
+    font-size: 0.775rem;
+  }
+
+  /* News Grid & Cards on Phones */
+  .news-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .news-card {
+    padding: 16px;
+    border-radius: var(--radius-md);
+  }
+
+  .card-title {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .card-snippet {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .card-footer {
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+
+  .card-actions .action-btn-sm {
+    width: 34px;
+    height: 34px;
+  }
+
+  /* Mobile-optimized News Table View */
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-md);
+  }
+
+  .col-category,
+  .col-published {
+    display: none; /* Hide non-critical columns on phone screens */
+  }
+
+  .col-publisher {
+    width: 110px !important;
+  }
+
+  .news-table th {
+    padding: 10px 12px;
+    font-size: 0.72rem;
+  }
+
+  .news-table td {
+    padding: 12px;
+    font-size: 0.825rem;
+  }
+
+  .table-title-cell {
+    font-size: 0.85rem;
+    max-width: 210px;
+    line-height: 1.35;
+  }
+
+  /* Phone Bottom-Sheet Modal */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    width: 100%;
+    max-height: 88vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+    padding: 24px 16px 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    animation: slideUpMobile 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideUpMobile {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .modal-close {
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .modal-body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 14px 0 18px;
+  }
+
+  .modal-meta-grid {
+    padding: 12px 14px;
+    margin-bottom: 18px;
+    font-size: 0.775rem;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .modal-footer-main {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .modal-action-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 10px 10px;
+    font-size: 0.8rem;
+    min-height: 42px;
+  }
+
+  /* Section Meta Row */
+  .section-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  /* Footer on Mobile */
+  .footer {
+    padding: 30px 0;
+    margin-top: 40px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-links {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
+
+/* Extra small phones (<= 380px, e.g. iPhone SE, older Androids) */
+@media (max-width: 380px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .sync-badge-text {
+    display: none; /* Just show the pulse indicator dot */
+  }
+
+  .sync-badge {
+    padding: 5px 6px;
+  }
+
+  .tab-btn {
+    font-size: 0.75rem;
+    padding: 8px 4px;
+    gap: 5px;
+  }
+
+  .tab-btn-label {
+    font-size: 0.725rem;
+  }
+
+  .tab-count-pill {
+    padding: 1px 4px;
+    font-size: 0.65rem;
+  }
+
+  .stat-val {
+    font-size: 1.15rem;
+  }
+
+  .stat-lbl {
+    font-size: 0.65rem;
+  }
+
+  .hero-title {
+    font-size: 1.15rem;
+  }
+
+  .card-title {
+    font-size: 0.975rem;
   }
 }

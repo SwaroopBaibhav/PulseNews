@@ -86,17 +86,7 @@ export default function ArticleModal({
         </div>
 
         {/* Meta Details Panel */}
-        <div style={{ 
-          background: 'var(--bg-primary)', 
-          border: '1px solid var(--surface-border)', 
-          borderRadius: 'var(--radius-md)', 
-          padding: '14px 18px', 
-          marginBottom: '24px', 
-          fontSize: '0.825rem',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '10px'
-        }}>
+        <div className="modal-meta-grid">
           <div>
             <span style={{ color: 'var(--text-muted)', display: 'block', marginBottom: '2px' }}>Published ISO Time:</span>
             <span style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-secondary)' }}>
@@ -112,19 +102,19 @@ export default function ArticleModal({
         </div>
 
         {/* Footer Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div className="modal-footer">
+          <div className="modal-footer-main">
             <a
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
+              className="btn-primary modal-action-btn"
             >
               <ExternalLink size={16} /> Open Full Story
             </a>
 
             <button
-              className="btn-secondary"
+              className="btn-secondary modal-action-btn"
               onClick={handleCopyLink}
             >
               <Share2 size={16} /> Copy URL

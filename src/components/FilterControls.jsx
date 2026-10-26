@@ -68,54 +68,59 @@ export default function FilterControls({
             )}
           </div>
 
-          {/* Source / Publisher Dropdown Filter */}
-          <div className="source-select-wrap">
-            <select
-              className="custom-select"
-              value={selectedSource}
-              onChange={(e) => onSelectSource(e.target.value)}
-              title="Filter by News Publisher"
-            >
-              <option value="all">All Publishers ({availableSources.length})</option>
-              {availableSources.map((src) => (
-                <option key={src.name} value={src.name}>
-                  {src.name} ({src.count})
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Secondary Controls Group (Publisher, Sort & View Mode) */}
+          <div className="filter-controls-subrow">
+            {/* Source / Publisher Dropdown Filter */}
+            <div className="source-select-wrap">
+              <select
+                className="custom-select"
+                value={selectedSource}
+                onChange={(e) => onSelectSource(e.target.value)}
+                title="Filter by News Publisher"
+              >
+                <option value="all">All Publishers ({availableSources.length})</option>
+                {availableSources.map((src) => (
+                  <option key={src.name} value={src.name}>
+                    {src.name} ({src.count})
+                  </option>
+                ))}
+              </select>
+            </div>
 
-          {/* Sort By Dropdown */}
-          <div style={{ minWidth: '160px' }}>
-            <select
-              className="custom-select"
-              value={sortBy}
-              onChange={(e) => onSortChange(e.target.value)}
-              title="Sort Articles"
-            >
-              <option value="newest">Latest Published</option>
-              <option value="oldest">Earliest Published</option>
-              <option value="title">Headline (A &rarr; Z)</option>
-              <option value="source">Publisher (A &rarr; Z)</option>
-            </select>
-          </div>
+            {/* Sort By Dropdown */}
+            <div className="sort-select-wrap">
+              <select
+                className="custom-select"
+                value={sortBy}
+                onChange={(e) => onSortChange(e.target.value)}
+                title="Sort Articles"
+              >
+                <option value="newest">Latest</option>
+                <option value="oldest">Earliest</option>
+                <option value="title">Headline (A &rarr; Z)</option>
+                <option value="source">Publisher (A &rarr; Z)</option>
+              </select>
+            </div>
 
-          {/* Listing Option: Grid Cards View vs Dense Table View */}
-          <div className="view-mode-group">
-            <button
-              className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
-              onClick={() => onViewModeChange('grid')}
-              title="Grid Cards View"
-            >
-              <LayoutGrid size={18} />
-            </button>
-            <button
-              className={`view-btn ${viewMode === 'table' ? 'active' : ''}`}
-              onClick={() => onViewModeChange('table')}
-              title="Dense Terminal Feed View"
-            >
-              <ListFilter size={18} />
-            </button>
+            {/* Listing Option: Grid Cards View vs Dense Table View */}
+            <div className="view-mode-group">
+              <button
+                className={`view-btn ${viewMode === 'grid' ? 'active' : ''}`}
+                onClick={() => onViewModeChange('grid')}
+                title="Grid Cards View"
+                aria-label="Grid Cards View"
+              >
+                <LayoutGrid size={18} />
+              </button>
+              <button
+                className={`view-btn ${viewMode === 'table' ? 'active' : ''}`}
+                onClick={() => onViewModeChange('table')}
+                title="Dense Terminal Feed View"
+                aria-label="Dense Terminal Feed View"
+              >
+                <ListFilter size={18} />
+              </button>
+            </div>
           </div>
         </div>
 
